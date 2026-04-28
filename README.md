@@ -1,3 +1,10 @@
+2026/4/28
+Uploaded to FAF vault as "Sim Speed Balancer"
+
+
+
+
+
 # My initial proposal
 
 ### Lightningbulb — 4/23/2026 3:43 PM (DISCORD REPLY)
