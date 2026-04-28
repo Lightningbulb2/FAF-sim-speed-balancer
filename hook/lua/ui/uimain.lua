@@ -27,10 +27,10 @@ end
 local OriginalIncreaseGameSpeed = IncreaseGameSpeed
 
 function IncreaseGameSpeed()
-    if import('/mods/FAF_sim_speed_balancer/modules/ui-invoke.lua').CheatsEnabled() then
+    if import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').CheatsEnabled() then
         OriginalIncreaseGameSpeed()
 
-       	import('/mods/FAF_sim_speed_balancer/modules/ui-invoke.lua').IncreasePlayerSpeed()
+       	import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').IncreasePlayerSpeed()
     else
         --LOG2("Player increase speed cancelled")
         print(LOCF("Sim Speed Balancer: Speed adjustments are locked without cheats on"))
@@ -42,10 +42,10 @@ end
 local OriginalDecreaseGameSpeed = DecreaseGameSpeed
 
 function DecreaseGameSpeed()
-    if import('/mods/FAF_sim_speed_balancer/modules/ui-invoke.lua').CheatsEnabled() then
+    if import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').CheatsEnabled() then
         OriginalDecreaseGameSpeed()
 
-       	import('/mods/FAF_sim_speed_balancer/modules/ui-invoke.lua').DecreasePlayerSpeed()
+       	import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').DecreasePlayerSpeed()
     else
         --LOG2("Player decrease speed cancelled")
         print(LOCF("Sim Speed Balancer: Speed adjustments are locked without cheats on"))

@@ -5,8 +5,8 @@ function BeginSession()
 
     ForkThread(function() 
 		while true do
-			import('/mods/FAF_sim_speed_balancer/modules/global-invoke.lua')
-			import('/mods/FAF_sim_speed_balancer/modules/sim-invoke.lua').OnTick()
+			import('/mods/FAF-sim-speed-balancer/modules/global-invoke.lua')
+			import('/mods/FAF-sim-speed-balancer/modules/sim-invoke.lua').OnTick()
 			WaitTicks(1)
 		end
 	end)

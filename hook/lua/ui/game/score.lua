@@ -116,11 +116,11 @@ local _OriginalOnBeat = _OnBeat
 
 function _OnBeat()
 
-    gameSpeed = import('/mods/FAF_sim_speed_balancer/modules/ui-invoke.lua').GetPlayerSpeed()
+    gameSpeed = import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').GetPlayerSpeed()
 
     _OriginalOnBeat()
-    controls.slowdownText:SetText(import('/mods/FAF_sim_speed_balancer/modules/ui-invoke.lua').getTotalSlowdown())
-    controls.speedupText:SetText(import('/mods/FAF_sim_speed_balancer/modules/ui-invoke.lua').getTotalSpeedup())
+    controls.slowdownText:SetText(import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').getTotalSlowdown())
+    controls.speedupText:SetText(import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').getTotalSpeedup())
 end
 
 

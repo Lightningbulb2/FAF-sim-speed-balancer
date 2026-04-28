@@ -1,6 +1,6 @@
--- wrap log function in a way that we can find it easily in the log (by FAF_sim_speed_balancer key)
+-- wrap log function in a way that we can find it easily in the log (by FAF-sim-speed-balancer key)
 _G.LOG2 = function(a)
-	LOG("FAF_sim_speed_balancer:", a)
+	LOG("FAF-sim-speed-balancer:", a)
 end
 
 _G.LogTable = function(o)
