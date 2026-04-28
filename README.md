@@ -1,9 +1,23 @@
+# Announcments
+
 2026/4/28
 Uploaded to FAF vault as "Sim Speed Balancer"
 
+---
 
+# Features
 
+• Stores slowdown time in a capped buffer that tries to make up lost time by increasing the game speed by 10%
 
+• "Zoop" forward a few ticks after short freezes to improve timings
+
+• UI readouts next the clock with tooltips for what they mean
+
+• The mod relies on game speed set to "adjustable" but blocks players from changing it. Turning cheats on allows overriding of the mod (setting speed back to 0 re-enables it)
+
+• Manual player pauses are excluded from all calculations
+
+---
 
 # My initial proposal
 
