@@ -1,21 +1,20 @@
 --NOTE: running a solo, afk, empty setons clutch for 46:21 resulted in 1:23 of lost time. (97% the speed of realtime)
+local options = SessionGetScenarioInfo().Options
 
 ----------MODIFY CONSTANTS HERE---------------
 ----------------------------------------------
 
 --number of ticks that can be zoomed forward after a freeze
-local zoopTickLengthLimit = 15 -- ticks
+local zoopTickLengthLimit = tonumber(options.SSB_ZoopTickLimit) or 15
 
 -- max length the slow time buffer can hold (ex: =5 means freezing for 10 seconds will only fast forward until 5 seconds is recovered)
-local maxRecoveryLength = 5.0 -- seconds
+local maxRecoveryLength = tonumber(options.SSB_MaxRecovery) or 5.0
 
 --minimum delay between ticks until it zoops
-local haltCuttoff = 0.3 -- seconds, 0.1 = 1 tick
+local haltCuttoff = tonumber(options.SSB_HaltCutoff) or 0.3
 
 ----------------------------------------------
 ----------------------------------------------
-
-
 
 
 local lastRealTime = nil
@@ -151,6 +150,9 @@ function OnBeat()
 					if cappedZoop > 10 then
 						cappedZoop = 10
 					end
+					if cappedZoop < 3 then
+						cappedZoop = 3
+					end
 
 					if playerSetSpeed == 0 then
 						SetGameSpeed(cappedZoop)
@@ -173,7 +175,7 @@ function OnBeat()
 
 		--LOG2("REAL: " .. currentRealTimestamp)
 		--LOG2("SIM: " .. currentSimTimestamp)
-		--LOG2("BEHIND: " .. slowdownAccumulator)
+		LOG2("BEHIND: " .. slowdownAccumulator)
 		
 		
 	end)
@@ -195,7 +197,7 @@ function ModSetGamePaused(bool)
 end
 
 function getTotalSlowdown()
-	return FormatTime(totalSlowdownAccumulator+totalHaltAccumulator)
+	return FormatTime(totalSlowdownAccumulator)
 end
 function getTotalSpeedup()
 	return FormatTime(math.abs(totalSlowdownRegainedAccumulator))

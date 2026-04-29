@@ -37,3 +37,11 @@ CON_ListCommands to list console commands
 
 
 ren_ShowNetworkStats
+
+
+robocopy "C:\development_GIT_REPOSITORIES\FAF-sim-speed-balancer" "C:\ProgramData\FAForever\user\My Games\Gas Powered Games\Supreme Commander Forged Alliance\mods\FAF-sim-speed-balancer" /MIR
+
+
+CREATE JUNCTION FOR FASTER DEVELOPMENT
+
+mklink /J "C:\ProgramData\FAForever\user\My Games\Gas Powered Games\Supreme Commander Forged Alliance\mods\FAF-sim-speed-balancer" "C:\development_GIT_REPOSITORIES\FAF-sim-speed-balancer"

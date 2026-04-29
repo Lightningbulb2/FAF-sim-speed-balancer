@@ -9,8 +9,10 @@ function SetLayout()
 
     local controls = import("/lua/ui/game/score.lua").controls
 
-    LayoutHelpers.RightOf(controls.slowdownText, controls.timeIcon, 102)
+    LayoutHelpers.AtLeftTopIn(controls.slowdownText, controls.timeIcon, 160, (-4))
 
-    LayoutHelpers.RightOf(controls.speedupText, controls.slowdownText)
+    LayoutHelpers.AtLeftTopIn(controls.speedupText, controls.slowdownText, 0, (11))
+
+    LayoutHelpers.AtLeftTopIn(controls.gameQuality , controls.timeIcon, (114), 1)
 
 end

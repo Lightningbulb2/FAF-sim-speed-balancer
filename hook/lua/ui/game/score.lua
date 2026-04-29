@@ -55,27 +55,32 @@ function CreateScoreUI(parent)
 
     LayoutHelpers.SetWidth(controls.bgTop, 320)
 
-    controls.time = UIUtil.CreateText(controls.bgTop, '0', 12, UIUtil.bodyFont)
+    --WELL, might as well add a dropshadow on the end of controls.time and controls.units with "true"
+    controls.time = UIUtil.CreateText(controls.bgTop, '0', 12, UIUtil.bodyFont, true)
     controls.time:SetColor('ff00dbff')
     controls.timeIcon = Bitmap(controls.bgTop)
     Tooltip.AddControlTooltip(controls.timeIcon, 'score_time')
     Tooltip.AddControlTooltip(controls.time, 'score_time')
     controls.unitIcon = Bitmap(controls.bgTop)
     Tooltip.AddControlTooltip(controls.unitIcon, 'score_units')
-    controls.units = UIUtil.CreateText(controls.bgTop, '0', 12, UIUtil.bodyFont)
+    controls.units = UIUtil.CreateText(controls.bgTop, '0', 12, UIUtil.bodyFont, true)
     controls.units:SetColor('ffff9900')
     Tooltip.AddControlTooltip(controls.units, 'score_units')
 
     ---------------------------------------------------
     ----------ONLY CODE I ADDED------------------------
     ---------------------------------------------------
-    controls.slowdownText = UIUtil.CreateText(controls.bgTop, '0', 11, UIUtil.bodyFont)
+    controls.slowdownText = UIUtil.CreateText(controls.bgTop, '0', 11, UIUtil.bodyFont, true)
     controls.slowdownText:SetColor('ffffff00')  -- AARRGGBB format, this is RED
     Tooltip.AddControlTooltip(controls.slowdownText, 'score_slow_time')
 
-    controls.speedupText = UIUtil.CreateText(controls.bgTop, '0', 11, UIUtil.bodyFont)
+    controls.speedupText = UIUtil.CreateText(controls.bgTop, '0', 11, UIUtil.bodyFont, true)
     controls.speedupText:SetColor('ff00ff00')  -- AARRGGBB format, this is green
     Tooltip.AddControlTooltip(controls.speedupText, 'score_fast_time')
+
+    controls.gameQuality = UIUtil.CreateText(controls.bgTop, '', 10.5, UIUtil.bodyFont, true)
+    controls.gameQuality:SetColor('ff00dbff')
+
     ---------------^^^----------------------------------
     ----------ONLY CODE I ADDED------------------------
     ---------------------------------------------------
@@ -121,6 +126,18 @@ function _OnBeat()
     _OriginalOnBeat()
     controls.slowdownText:SetText(import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').getTotalSlowdown())
     controls.speedupText:SetText(import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').getTotalSpeedup())
+
+    local s = string.format("%s(%+d / %+d)", GetGameTime(), gameSpeed, GetSimRate())
+
+
+    controls.time:SetText(s)
+
+    if sessionInfo.Options.Quality then
+        q = string.format("Q:%.2f%%", s, sessionInfo.Options.Quality)
+        controls.gameQuality:SetText(q)
+    end
+
+
 end
 
 
