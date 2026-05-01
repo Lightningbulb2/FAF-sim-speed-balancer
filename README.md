@@ -5,19 +5,99 @@ Uploaded to FAF vault as "Sim Speed Balancer"
 
 ---
 
+# How does it work?
+
+**_TLDR_**: Dynamically speed up **easy to compute ticks** right after **hard to compute ticks** to keep ingame-time and real-time in sync.
+
+---
+
+Supreme Commander's game state is calculated individually by every player in the lobby. The only information they give each other is the actions they _just_ did. This requires keeping the game state perfectly in sync across everybody and **no matter what happens**, this is the **highest priority**.
+
+The game accomplishes this well! Every time someone's internet cuts out, packets miss, or their computer freezes for a moment. The entire simulation comes to a halt to wait for the them to catch up. If anyone is even a few milliseconds late on their tick calculations, the simulation slows down to meet them.
+
+This occurs in single player matches as well
+
+The game runs at 10 ticks per second, 100ms per tick. Here's a tick by tick theoretical:
+
+Tick 1: 86ms (finished and waiting until 100ms)
+
+Tick 2: 95ms (finished and waiting until 100ms)
+
+Tick 3: 105ms (+5ms) -> **5ms behind** |-- too much action
+
+Tick 4: 120ms (+20ms) -> **25ms behind** |-- too much action
+
+Tick 5: 103ms (+3ms) -> **28ms behind** |-- too much action
+
+-- turn on +1 speed to end ticks early at 90ms instead
+
+Tick 7: 89ms (-10ms) -> **18ms behind** +1 speed |-- recapture lost time
+
+Tick 8: 82ms (-10ms) -> **8ms behind** +1 speed |-- recapture lost time
+
+Tick 9: 83ms (-10ms) -> **2ms ahead** +1 speed |-- recapture lost time
+
+-- caught up so set to +0
+Tick 10: 90ms (+0ms) -> **2ms ahead** +0 speed
+
+The actual implementation has a 100ms threshold for falling behind before catching up, so it doesn't overshoot real-time.
+
+Sometimes there are long periods of slowdown, rather than going slow for a minute and then speeding up the rest of the game. The mod is capped to 3 seconds by default. This means that if the simulation falls more than 3 seconds behind before it can catch up, it won't make that time up. This keeps the speedups more local, and can be adjusted through the ingame options.
+
+Here is a basic comparison with the mod on vs off
+
+0:00 - 3:00 it's off
+3:00 - 6:19 it's on
+
+https://youtu.be/BZkxeI3a9-c
+
+---
+
 # Features
 
 • Stores slowdown time in a capped buffer that tries to make up lost time by increasing the game speed by 10%
 
-• "Zoop" forward a few ticks after short freezes to improve timings
+• Manual player pauses are excluded from all calculations
 
 • UI readouts next the clock with tooltips for what they mean
 
+• Replay compatible
+
 • The mod relies on game speed set to "adjustable" but blocks players from changing it. Turning cheats on allows overriding of the mod (setting speed back to 0 re-enables it)
 
-• Manual player pauses are excluded from all calculations
+• Some mod constants can be set in the lobby (1 for now)
 
-• Some mod constants can be set in the lobby
+• small scoreboard changes for readability
+
+#### Unfinished, so left out for now
+
+• "Zoop" forward a few ticks after short freezes to improve timings
+
+## Connoisseurs (curious about the mod, it's functionality, gave feedback, excited for adoption)
+
+Phong
+
+AI_Easy
+
+True_guesser
+
+## Believers (sat in the desolate lobby for a while hoping people would join to playtest)
+
+Terren
+
+Zachrandir
+
+KnightSolaire
+
+## Helped playtest (and didn't quit immediately xD)
+
+GoTaLeen
+techrw
+DietTaco
+Krivdagor
+Razalgoud
+gabrilend
+Darkwolfe
 
 ---
 
@@ -41,9 +121,9 @@ Tick 2 86ms (finished and waiting till 100ms)
 
 Tick 3: 95ms (finished and waiting till 100ms)
 
-Tick 4: 102ms (2 ticks late)
+Tick 4: 102ms (2 ms late)
 
-Tick 5: 120ms (20 ticks late)
+Tick 5: 120ms (20 ms late)
 
 Tick 6: 98ms (finished and waiting till 100ms)
 

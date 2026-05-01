@@ -1,23 +1,6 @@
---[[
-
----@type function
-local OriginalCreateScoreUI = CreateScoreUI
 
 
---
-function CreateScoreUI(parent)
-    OriginalCreateScoreUI(parent)
-
-    controls.slowdownText = UIUtil.CreateText(controls.bgTop, '0', 12, UIUtil.bodyFont)
-    slowdownText:SetColor('ffff0000')  -- AARRGGBB format, this is RED
-
-    controls.speedupText = UIUtil.CreateText(controls.bgTop, '0', 12, UIUtil.bodyFont)
-    speedupText:SetColor('ff00ff00')  -- AARRGGBB format, this is green
-    
-end
-]]
-
--- NEEDED to overwrite entire function to insert my UI code in the right spot
+-- Needed to overwrite function to insert my UI code in the right spot
 function CreateScoreUI(parent)
     created = true
     savedParent = GetFrame(0)
@@ -55,20 +38,20 @@ function CreateScoreUI(parent)
 
     LayoutHelpers.SetWidth(controls.bgTop, 320)
 
-    --WELL, might as well add a dropshadow on the end of controls.time and controls.units with "true"
-    controls.time = UIUtil.CreateText(controls.bgTop, '0', 12, UIUtil.bodyFont, true)
+    --WELL, I might as well add a dropshadow on the end of controls.time and controls.units with "true"
+    controls.time = UIUtil.CreateText(controls.bgTop, '0', 12, UIUtil.bodyFont, true) --< ,true added here
     controls.time:SetColor('ff00dbff')
     controls.timeIcon = Bitmap(controls.bgTop)
     Tooltip.AddControlTooltip(controls.timeIcon, 'score_time')
     Tooltip.AddControlTooltip(controls.time, 'score_time')
     controls.unitIcon = Bitmap(controls.bgTop)
     Tooltip.AddControlTooltip(controls.unitIcon, 'score_units')
-    controls.units = UIUtil.CreateText(controls.bgTop, '0', 12, UIUtil.bodyFont, true)
+    controls.units = UIUtil.CreateText(controls.bgTop, '0', 12, UIUtil.bodyFont, true) --< , true added here
     controls.units:SetColor('ffff9900')
     Tooltip.AddControlTooltip(controls.units, 'score_units')
 
     ---------------------------------------------------
-    ----------ONLY CODE I ADDED------------------------
+    ----------ONLY LINES I ADDED------------------------
     ---------------------------------------------------
     controls.slowdownText = UIUtil.CreateText(controls.bgTop, '0', 11, UIUtil.bodyFont, true)
     controls.slowdownText:SetColor('ffffff00')  -- AARRGGBB format, this is RED
@@ -78,12 +61,13 @@ function CreateScoreUI(parent)
     controls.speedupText:SetColor('ff00ff00')  -- AARRGGBB format, this is green
     Tooltip.AddControlTooltip(controls.speedupText, 'score_fast_time')
 
+    --game quality is it's own element (so I can shrink it to fit in the UI)
     controls.gameQuality = UIUtil.CreateText(controls.bgTop, '', 10.5, UIUtil.bodyFont, true)
     controls.gameQuality:SetColor('ff00dbff')
 
     ---------------^^^----------------------------------
-    ----------ONLY CODE I ADDED------------------------
-    ---------------------------------------------------
+    ----------ONLY LINES I ADDED------------------------
+    ----------------------------------------------------
 
     SetLayout()
     SetupPlayerLines()
@@ -115,7 +99,7 @@ end
 
 
 
---set the new UI readouts
+--set the new UI readouts and move game quality to it's own element
 ---@type function
 local _OriginalOnBeat = _OnBeat
 
@@ -133,7 +117,7 @@ function _OnBeat()
     controls.time:SetText(s)
 
     if sessionInfo.Options.Quality then
-        q = string.format("Q:%.2f%%", s, sessionInfo.Options.Quality)
+        q = string.format("Q:%.2f%%", sessionInfo.Options.Quality)
         controls.gameQuality:SetText(q)
     end
 
