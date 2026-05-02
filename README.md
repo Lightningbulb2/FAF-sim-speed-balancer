@@ -73,15 +73,9 @@ https://youtu.be/BZkxeI3a9-c
 
 • "Zoop" forward a few ticks after short freezes to improve timings
 
-## Connoisseurs (curious about the mod, it's functionality, gave feedback, excited for adoption)
+## Believers (sat in the desolate lobby for a while hoping people would join to playtest)
 
 Phong
-
-AI_Easy
-
-True_guesser
-
-## Believers (sat in the desolate lobby for a while hoping people would join to playtest)
 
 Terren
 
