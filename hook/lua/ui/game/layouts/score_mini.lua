@@ -15,4 +15,6 @@ function SetLayout()
 
     LayoutHelpers.AtLeftTopIn(controls.gameQuality , controls.timeIcon, (114), 1)
 
+    LayoutHelpers.AtLeftTopIn(controls.avgTickrate, controls.timeIcon, -150)
+
 end

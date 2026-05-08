@@ -26,6 +26,11 @@ function IncreaseGameSpeed()
         OriginalIncreaseGameSpeed()
        	import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').IncreasePlayerSpeed()
 
+        
+        if SessionIsReplay() then
+            import('/lua/ui/game/score.lua').ChangeSlider(import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').GetPlayerSpeed())
+        end
+
     else
         print(LOCF("Sim Speed Balancer: Speed adjustments are locked without cheats on"))
     end
@@ -39,6 +44,9 @@ function DecreaseGameSpeed()
 
         OriginalDecreaseGameSpeed()
        	import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').DecreasePlayerSpeed()
+        if SessionIsReplay() then
+            import('/lua/ui/game/score.lua').ChangeSlider(import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').GetPlayerSpeed())
+        end
 
     else
         print(LOCF("Sim Speed Balancer: Speed adjustments are locked without cheats on"))

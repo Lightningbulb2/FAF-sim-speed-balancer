@@ -12,6 +12,17 @@ AIOpts = {
             { text = "Unlimited", help = "No limit", key = '999' },
         },
     },
+    {
+        default = 2,
+        label = "Target Tickrate",
+        help = "Tickrate the mod tries to maintain",
+        key = 'SSB_TargetTickrate',
+        values = {
+            { text = "9.5 TPS",  help = "make the game feel like it used to",  key = '0.95' },
+            { text = "10 TPS",  help = "make the game run at it's advertised tickrate",  key = '1.0' },
+        },
+    },
+
     --[[
     {
         default = 3,

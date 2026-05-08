@@ -7,9 +7,11 @@ Uploaded to FAF vault as "Sim Speed Balancer"
 
 # How does it work?
 
-**_TLDR_**: Dynamically speed up **easy to compute ticks** right after **hard to compute ticks** to keep ingame-time and real-time in sync.
+**_TLDR_**: Dynamically adjust game speed to reduce lag and improve performance.
 
 ---
+
+**_Summary_**: Dynamically speed up **easy to compute ticks** right after **hard to compute ticks** to keep ingame-time and real-time in sync.
 
 Supreme Commander's game state is calculated individually by every player in the lobby. The only information they give each other is the actions they _just_ did. This requires keeping the game state perfectly in sync across everybody and **no matter what happens**, this is the **highest priority**.
 
@@ -69,35 +71,9 @@ https://youtu.be/BZkxeI3a9-c
 
 • small scoreboard changes for readability
 
-#### Unfinished, so left out for now
+### Thanks!
 
-• "Zoop" forward a few ticks after short freezes to improve timings
-
-## Connoisseurs (curious about the mod, it's functionality, gave feedback, excited for adoption)
-
-Phong
-
-AI_Easy
-
-True_guesser
-
-## Believers (sat in the desolate lobby for a while hoping people would join to playtest)
-
-Terren
-
-Zachrandir
-
-KnightSolaire
-
-## Helped playtest (and didn't quit immediately xD)
-
-GoTaLeen
-techrw
-DietTaco
-Krivdagor
-Razalgoud
-gabrilend
-Darkwolfe
+Nuggets - FAF association (majorly helped with playtesting, feedback, and adoption)
 
 ---
 

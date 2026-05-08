@@ -53,6 +53,9 @@ function CreateScoreUI(parent)
     ---------------------------------------------------
     ----------ONLY LINES I ADDED------------------------
     ---------------------------------------------------
+    controls.avgTickrate = UIUtil.CreateText(controls.bgTop, 'TPS:', 12, UIUtil.bodyFont, true)
+    controls.avgTickrate:SetColor('ff00dbff')
+
     controls.slowdownText = UIUtil.CreateText(controls.bgTop, '0', 11, UIUtil.bodyFont, true)
     controls.slowdownText:SetColor('ffffff00')  -- AARRGGBB format, this is RED
     Tooltip.AddControlTooltip(controls.slowdownText, 'score_slow_time')
@@ -121,7 +124,24 @@ function _OnBeat()
         controls.gameQuality:SetText(q)
     end
 
+    if rawget(_G, "avgTimePerTick10") then 
+        controls.avgTickrate:SetText(string.format("TPS(10s): %05.2f", avgTimePerTick10 or 0))
+    end
 
+end
+
+
+-- make speed slider work in replays
+
+---@type function
+local OriginalSetupPlayerLines = SetupPlayerLines
+
+function SetupPlayerLines()
+    OriginalSetupPlayerLines()
+end
+
+function ChangeSlider(newValue)
+    observerLine.speedSlider:SetValue(newValue)
 end
 
 

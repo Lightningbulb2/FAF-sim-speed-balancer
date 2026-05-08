@@ -1,10 +1,10 @@
 name = "Sim Speed Balancer"
-version = 11
+version = 13
 copyright = "Licensed under the FAF Vault License. Free to use and modify."
-description = "automatically adjust simspeed after hiccups or slow ticks to make up lost time (does not impact determinism) The game has to be on adjustable to work, it stops players from messing with it. Github at https://github.com/Lightningbulb2/FAF-sim-speed-balancer"
+description = "Dynamically adjust game speed to reduce lag and improve performance. Github at https://github.com/Lightningbulb2/FAF-sim-speed-balancer"
 author = "Lightningbulb"
 url = "https://github.com/Lightningbulb2/FAF-sim-speed-balancer"
-uid = "9dbb272d-7799-45b3-aded-05bde926b43c"
+uid = "08890305-739a-41b7-8572-24a1c04f7bc4"
 
 exclusive = false
 ui_only = false
