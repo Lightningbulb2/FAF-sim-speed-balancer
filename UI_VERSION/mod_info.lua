@@ -1,16 +1,16 @@
-name = "Sim Speed Balancer (Enable For All)"
-version = 15
+name = "Sim Speed Balancer (Non-Modded Compatible)"
+version = 17
 copyright = "Licensed under the FAF Vault License. Free to use and modify."
 description =
 "Dynamically adjust game speed to reduce lag and improve performance. Github at https://github.com/Lightningbulb2/FAF-sim-speed-balancer"
 author = "Lightningbulb"
 url = "https://github.com/Lightningbulb2/FAF-sim-speed-balancer"
-uid = "fa45244b-3fd5-490b-99a5-b7f5e4631d4c"
+uid = "41126c8e-9f23-46bf-8865-045686d60856"
 
 exclusive = false
 enabled = true
-ui_only = false
+ui_only = true
 conflicts = {}
-after = {}
-before = {"927849a2-662c-4f31-b7dd-8b7d57f10358"}
-icon = "SIM_VERSION/speed_balancer.png"
+after = { "9c82a91e-677d-40bb-91fc-df9358de7f4e" }
+before = {}
+icon = "/mods/FAF-sim-speed-balancer/UI_VERSION/speed_balancer.png"

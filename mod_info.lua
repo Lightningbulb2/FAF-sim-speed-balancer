@@ -1,19 +1,19 @@
 name = "Sim Speed Balancer"
-version = 16
+version = 17
 copyright = "Licensed under the FAF Vault License. Free to use and modify."
 description =
 "Dynamically adjust game speed to reduce lag and improve performance. Github at https://github.com/Lightningbulb2/FAF-sim-speed-balancer"
 author = "Lightningbulb"
 url = "https://github.com/Lightningbulb2/FAF-sim-speed-balancer"
-uid = "927849a2-662c-4f31-b7dd-8b7d57f10358"
+uid = "9c82a91e-677d-40bb-91fc-df9358de7f4e"
 
 exclusive = false
 enabled = true
-ui_only = true
+ui_only = false
 conflicts = {}
-after = { "fa45244b-3fd5-490b-99a5-b7f5e4631d4c" }
-before = {}
-icon = "FAF-sim-speed-balancer/speed_balancer.png"
+after = {}
+before = { "41126c8e-9f23-46bf-8865-045686d60856" }
+icon = "/mods/FAF-sim-speed-balancer/speed_balancer.png"
 
 --[[
 
@@ -37,6 +37,9 @@ Integrate UI version and SIM version into the same vault upload
 
 V16
 Fix: icon directory wrong and missing changelog, plus README announcement updates
+
+V17
+Fix: swap the UI version as the nested mod and fix icons again
 
 
 ]]
