@@ -5,6 +5,9 @@ Uploaded to FAF vault as "Sim Speed Balancer"
 
 ---
 
+Works with scoreboard mods like Supreme Scoreboard
+![UI_image](./assets/UI.PNG)
+
 # How does it work?
 
 **_TLDR_**: Dynamically adjust game speed to reduce lag and improve performance.

@@ -1,22 +1,23 @@
-
-local function InitMyMod()
-    import('/lua/ui/game/gamemain.lua').AddOnSyncCallback(function(sync)
-        if sync.timePerTick then
-			_G.avgTimePerTick10 = sync.timePerTick.avgTimePerTick10
-        end
-    end, "MyModSyncCallback")
-end
-
-
-
 local oldCreateUI = CreateUI
 function CreateUI(isReplay)
 	oldCreateUI(isReplay)
-	InitMyMod()
+    _G.SimSpeedBalancerPath = "/mods/FAF-sim-speed-balancer"
+		import(SimSpeedBalancerPath .. '/modules/global-invoke.lua')
+    local simModUID = 'fa45244b-3fd5-490b-99a5-b7f5e4631d4c'
+    local simModActive = false
 
-	AddBeatFunction(function() 
-		import('/mods/FAF-sim-speed-balancer/modules/global-invoke.lua')
-        import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').OnBeat()
-    end)
+    for _, mod in _G.__active_mods do
+        if mod.uid == simModUID then
+            simModActive = true
+            break
+        end
+    end
+
+    if not simModActive then
+        AddBeatFunction(function() 
+            import(SimSpeedBalancerPath .. '/modules/ui-invoke.lua').OnBeat()
+        end)
+
+    end
 end 
 

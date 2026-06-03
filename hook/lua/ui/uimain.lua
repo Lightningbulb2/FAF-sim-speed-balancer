@@ -6,7 +6,7 @@
 local OriginalNoteGameSpeedChanged = NoteGameSpeedChanged
 function NoteGameSpeedChanged(clientIndex, newSpeed)
 
-    if import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').CheatsEnabled() and import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').GetPlayerSpeed() ~=0 then
+    if import(SimSpeedBalancerPath .. '/modules/ui-invoke.lua').CheatsEnabled() and import(SimSpeedBalancerPath .. '/modules/ui-invoke.lua').GetPlayerSpeed() ~=0 then
         OriginalNoteGameSpeedChanged(clientIndex, newSpeed)
     end
 
@@ -21,14 +21,14 @@ end
 local OriginalIncreaseGameSpeed = IncreaseGameSpeed
 
 function IncreaseGameSpeed()
-    if import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').CheatsEnabled() or SessionIsReplay() then
+    if import(SimSpeedBalancerPath .. '/modules/ui-invoke.lua').CheatsEnabled() or SessionIsReplay() then
 
         OriginalIncreaseGameSpeed()
-       	import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').IncreasePlayerSpeed()
+       	import(SimSpeedBalancerPath .. '/modules/ui-invoke.lua').IncreasePlayerSpeed()
 
         
         if SessionIsReplay() then
-            import('/lua/ui/game/score.lua').ChangeSlider(import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').GetPlayerSpeed())
+            import('/lua/ui/game/score.lua').ChangeSlider(import(SimSpeedBalancerPath .. '/modules/ui-invoke.lua').GetPlayerSpeed())
         end
 
     else
@@ -40,12 +40,12 @@ end
 local OriginalDecreaseGameSpeed = DecreaseGameSpeed
 
 function DecreaseGameSpeed()
-    if import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').CheatsEnabled() or SessionIsReplay()  then
+    if import(SimSpeedBalancerPath .. '/modules/ui-invoke.lua').CheatsEnabled() or SessionIsReplay()  then
 
         OriginalDecreaseGameSpeed()
-       	import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').DecreasePlayerSpeed()
+       	import(SimSpeedBalancerPath .. '/modules/ui-invoke.lua').DecreasePlayerSpeed()
         if SessionIsReplay() then
-            import('/lua/ui/game/score.lua').ChangeSlider(import('/mods/FAF-sim-speed-balancer/modules/ui-invoke.lua').GetPlayerSpeed())
+            import('/lua/ui/game/score.lua').ChangeSlider(import(SimSpeedBalancerPath .. '/modules/ui-invoke.lua').GetPlayerSpeed())
         end
 
     else

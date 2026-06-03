@@ -45,3 +45,5 @@ robocopy "C:\development_GIT_REPOSITORIES\FAF-sim-speed-balancer" "C:\ProgramDat
 CREATE JUNCTION FOR FASTER DEVELOPMENT
 
 mklink /J "C:\ProgramData\FAForever\user\My Games\Gas Powered Games\Supreme Commander Forged Alliance\mods\FAF-sim-speed-balancer" "C:\development_GIT_REPOSITORIES\FAF-sim-speed-balancer"
+
+mklink /J "C:\ProgramData\FAForever\user\My Games\Gas Powered Games\Supreme Commander Forged Alliance\mods\FAF-sim-speed-balancer-UI" "C:\development_GIT_REPOSITORIES\FAF-sim-speed-balancer-UI"
