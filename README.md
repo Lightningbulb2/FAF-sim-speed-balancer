@@ -3,6 +3,12 @@
 2026/4/28
 Uploaded to FAF vault as "Sim Speed Balancer"
 
+2026/5/1
+Approved as a ranked mod for competitive matches
+
+2026/6/3
+Merged optional UI version and the mandatory SIM version into the same vault upload
+
 ---
 
 Works with scoreboard mods like Supreme Scoreboard
