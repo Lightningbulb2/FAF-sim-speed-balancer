@@ -1,6 +1,6 @@
 
 
--- wrap log function in a way that we can find it easily in the log (by FAF-sim-speed-balancer key)
+-- wrap log function so it's easy to filter in the log
 _G.LOG2 = function(a)
 	LOG("FAF-sim-speed-balancer:", a)
 end

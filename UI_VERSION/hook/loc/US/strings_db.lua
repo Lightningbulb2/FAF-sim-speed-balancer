@@ -1,1 +1,0 @@
-key_desc_9906 = 'Toggles the "Sim Speed Balancer" mod\'s ability to change the game speed'

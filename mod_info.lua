@@ -1,18 +1,18 @@
 name = "Sim Speed Balancer"
-version = 17
+version = 18
 copyright = "Licensed under the FAF Vault License. Free to use and modify."
 description =
-"Dynamically adjust game speed to reduce lag and improve performance. Github at https://github.com/Lightningbulb2/FAF-sim-speed-balancer"
+"Dynamically microadjust game speed to reduce lag and improve performance. Details at https://github.com/Lightningbulb2/FAF-sim-speed-balancer"
 author = "Lightningbulb"
 url = "https://github.com/Lightningbulb2/FAF-sim-speed-balancer"
-uid = "9c82a91e-677d-40bb-91fc-df9358de7f4e"
+uid = "2086e2dc-c049-4928-958e-6e0ac590d548"
 
 exclusive = false
 enabled = true
 ui_only = false
 conflicts = {}
 after = {}
-before = { "41126c8e-9f23-46bf-8865-045686d60856" }
+before = { "118529b1-42f8-4aab-a920-78e09a628bf0" }
 icon = "/mods/FAF-sim-speed-balancer/speed_balancer.png"
 
 --[[
@@ -40,6 +40,22 @@ Fix: icon directory wrong and missing changelog, plus README announcement update
 
 V17
 Fix: swap the UI version as the nested mod and fix icons again
+
+V18:
+
+Major cleanup
+
+Feature: Add in-game UI button to quick-toggle mod functionality
+• (player that is allowed to do so is set in the lobby based on slot)
+• (the button is always there in replay)
+
+Feature: Exchange mod version between players who have the mod to catch discrepancies
+
+Feature: Lobby toggle for printing lots of mod info in the log (for plotting)
+
+Fix: Broken UI scaling
+
+
 
 
 ]]
