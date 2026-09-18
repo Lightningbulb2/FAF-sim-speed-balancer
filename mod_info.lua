@@ -1,18 +1,18 @@
 name = "Sim Speed Balancer"
-version = 18
+version = 19
 copyright = "Licensed under the FAF Vault License. Free to use and modify."
 description =
 "Dynamically microadjust game speed to reduce lag and improve performance. Details at https://github.com/Lightningbulb2/FAF-sim-speed-balancer"
 author = "Lightningbulb"
 url = "https://github.com/Lightningbulb2/FAF-sim-speed-balancer"
-uid = "2086e2dc-c049-4928-958e-6e0ac590d548"
+uid = "6ac96f83-a4ec-4d6c-ad06-fcd84be7d88f"
 
 exclusive = false
 enabled = true
 ui_only = false
 conflicts = {}
 after = {}
-before = { "118529b1-42f8-4aab-a920-78e09a628bf0" }
+before = { "0c1dd76b-9eaa-485b-bc4e-70380b46bade" }
 icon = "/mods/FAF-sim-speed-balancer/speed_balancer.png"
 
 --[[
@@ -55,7 +55,11 @@ Feature: Lobby toggle for printing lots of mod info in the log (for plotting)
 
 Fix: Broken UI scaling
 
+Change: TPS readout window went from 10s to 5s, and now works before 5 seconds of data
 
+V19:
+
+Fix vault upload...
 
 
 ]]

@@ -43,7 +43,7 @@ end
 
 --#region Constants
 
-local modVersion = 18
+local modVersion = 19
 
 local OPTIONS = SessionGetScenarioInfo().Options
 
