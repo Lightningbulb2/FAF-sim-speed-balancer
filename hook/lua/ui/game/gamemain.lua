@@ -3,8 +3,10 @@ function CreateUI(isReplay)
     oldCreateUI(isReplay)
     _G.SimSpeedBalancerPath = "/mods/FAF-sim-speed-balancer"
 	import(SimSpeedBalancerPath .. '/modules/global-invoke.lua')
+
+    local uiInvoke = import(SimSpeedBalancerPath .. '/modules/ui-invoke.lua')
 	AddBeatFunction(function() 
-        import(SimSpeedBalancerPath .. '/modules/ui-invoke.lua').OnBeat()
+        uiInvoke.OnBeat()
     end)
 
     InitSimSpeedBalancer(isReplay)

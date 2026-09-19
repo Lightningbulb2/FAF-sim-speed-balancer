@@ -43,7 +43,7 @@ end
 
 --#region Constants
 
-local modVersion = 19
+local modVersion = 20
 
 local OPTIONS = SessionGetScenarioInfo().Options
 
@@ -66,9 +66,7 @@ myArmyId = GetFocusArmy()
 local myName = armies[myArmyId].nickname
 
 local validClients = {}
-local unknownClients = {}
-
-local logFile = nil
+local moddedClients = {}
 
 --#endregion
 
@@ -293,7 +291,7 @@ function OnBeat()
 			print(LOCF("WARNING: Sim Speed Balancer requires Game Speed set to Adjustable! (Readouts still work without that though)"))
 		end
 
-		if currentGameTick > 50 and not fetchedUnknownClients then
+		if currentGameTick > 50 and not fetchedUnknownClients and not SessionIsReplay() then
 			GetUnknownClients()
 			fetchedUnknownClients = true
 		end
@@ -344,8 +342,9 @@ function OnBeat()
 
 		--#endregion
 
-		if LOGGING_ENABLED then
+		if LOGGING_ENABLED == 1 then
 			--LOG2(string.format("Current Divergence %015.12f | Divergence Change %+016.12f | Game Tick %015.12f | Real Time %015.12f | Sim Time %015.12f | Was Paused %d", currentDivergence, divergenceDelta, currentGameTick, currentRealTime, currentSimTime, wasPaused and 1 or 0))
+
 			LOG2(string.format("%d | %06d | %010.3f | %010.3f | %015.12f | %+016.12f",modEnabled and 1 or 0, currentGameTick, currentRealTime, currentSimTime, currentDivergence, divergenceDelta))
 		end
 
@@ -416,7 +415,7 @@ function HasSimSpeedBalancer(player, version)
 
 	for index, client in pairs(GetSessionClients()) do
         if client.name == player then
-			unknownClients[index] = 99
+			moddedClients[index] = index
         end
     end
 
@@ -436,10 +435,10 @@ function GetUnknownClients()
 	for index, client in pairs(GetSessionClients()) do
 
 		if GetFocusArmy() == index then
-			unknownClients[index] = 99
+			moddedClients[index] = index
 		end
 
-		if unknownClients[index] ~= 99 then
+		if moddedClients[index] ~= index then
 
 			if ChatController and ChatController.AppendEntry then
 			ChatController.AppendEntry({Name = "SimSpeedBalancer:", 
@@ -685,20 +684,22 @@ function CreateReadoutsDisplay(parent)
 			validClients[index] = index
         end
     end
-	unknownClients = validClients
-	if ChatController and ChatController.AppendEntry then
-                    ChatController.AppendEntry({Name = "SimSpeedBalancer:", 
-                                      Text=string.format("You are on version %i", modVersion),
-                                      Color ="ffffff",
-                                      BodyColor = "ffffff",
-                                      ArmyID    = 0,
-                                      Recipient = GetFocusArmy(),
-                                      })
-                end
-	SessionSendChatMessage(validClients, { Identifier = 'SimSpeedBalancer', version = modVersion })
-	
-	LOG2("Mod Enabled | Game Tick | Real Time | Sim Time | Current Divergence | Divergence Change")
 
+	if not SessionIsReplay() and table.getn(GetSessionClients()) > 1 and ChatController and ChatController.AppendEntry then
+		ChatController.AppendEntry({Name = "SimSpeedBalancer:", 
+							Text=string.format("You are on version %i", modVersion),
+							Color ="ffffff",
+							BodyColor = "ffffff",
+							ArmyID    = 0,
+							Recipient = GetFocusArmy(),
+							})
+		SessionSendChatMessage(validClients, { Identifier = 'SimSpeedBalancer', version = modVersion })
+                end
+
+
+	if LOGGING_ENABLED == 1 then
+		LOG2("Mod Enabled | Game Tick | Real Time | Sim Time | Current Divergence | Divergence Change")
+	end
 end
 
 function GetTotalSlowdown()

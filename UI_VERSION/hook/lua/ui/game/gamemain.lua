@@ -4,7 +4,7 @@ function CreateUI(isReplay)
     _G.SimSpeedBalancerPath = "/mods/FAF-sim-speed-balancer/UI_VERSION"
 	import(SimSpeedBalancerPath .. '/modules/global-invoke.lua')
 
-    local simModUID = '6ac96f83-a4ec-4d6c-ad06-fcd84be7d88f'
+    local simModUID = 'SimSpeedBalancerV20'
     local simModActive = false
 
     for _, mod in _G.__active_mods do
@@ -16,9 +16,11 @@ function CreateUI(isReplay)
 
     if not simModActive then
 
-        AddBeatFunction(function() 
-            import(SimSpeedBalancerPath .. '/modules/ui-invoke.lua').OnBeat()
-        end)
+    local uiInvoke = import(SimSpeedBalancerPath .. '/modules/ui-invoke.lua')
+	AddBeatFunction(function() 
+        uiInvoke.OnBeat()
+    end)
+
 
         InitSimSpeedBalancer(isReplay)
     end 

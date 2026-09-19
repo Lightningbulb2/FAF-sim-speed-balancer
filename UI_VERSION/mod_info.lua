@@ -1,17 +1,17 @@
 name = "Sim Speed Balancer (Non-Modded Compatible)"
-version = 19
+version = 20
 copyright = "Licensed under the FAF Vault License. Free to use and modify."
 description =
 "Dynamically microadjust game speed to reduce lag and improve performance. Details at https://github.com/Lightningbulb2/FAF-sim-speed-balancer"
 author = "Lightningbulb"
 url = "https://github.com/Lightningbulb2/FAF-sim-speed-balancer"
-uid = "0c1dd76b-9eaa-485b-bc4e-70380b46bade"
+uid = "SimSpeedBalancerUIV20"
 
 exclusive = false
 enabled = true
 ui_only = true
 conflicts = {}
-after = { "6ac96f83-a4ec-4d6c-ad06-fcd84be7d88f" }
+after = { "SimSpeedBalancerV20" }
 before = {}
 icon = "/mods/FAF-sim-speed-balancer/UI_VERSION/speed_balancer.png"
 
@@ -46,12 +46,15 @@ V18:
 Major cleanup
 
 Feature: Add in-game UI button to quick-toggle mod functionality
-• (player that is allowed to do so is set in the lobby based on slot)
+• (player that is allowed to do so is set in the lobby based on slot number)
+
 • (the button is always there in replay)
 
 Feature: Exchange mod version between players who have the mod to catch discrepancies
 
 Feature: Lobby toggle for printing lots of mod info in the log (for plotting)
+
+Feature: Added readout for current realtime divergence the mod can recover
 
 Fix: Broken UI scaling
 
@@ -60,6 +63,10 @@ Change: TPS readout window went from 10s to 5s, and now works before 5 seconds o
 V19:
 
 Fix vault upload...
+
+V20:
+
+Fix logging toggle and modded client reporting in chat
 
 
 ]]
