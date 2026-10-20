@@ -42,15 +42,5 @@ AIOpts = {
             { text = "Slot 12",  help = "player slot",  key = 12 },
         },
     },
-    {
-        default = 1,
-        label = "Debug: Detailed Logging",
-        help = "Sim Speed Balancer: (may cause performance problems idk)",
-        key = 'SSB_Logging',
-        values = {
-            { text = "OFF",  help = "Disable Logging",  key = 0 },
-            { text = "ON",  help = "Enable Logging",  key = 1 },
-        },
-    },
 
 }

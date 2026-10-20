@@ -1,18 +1,18 @@
 name = "Sim Speed Balancer"
-version = 20
+version = 21
 copyright = "Licensed under the FAF Vault License. Free to use and modify."
 description =
 "Dynamically microadjust game speed to reduce lag and improve performance. Details at https://github.com/Lightningbulb2/FAF-sim-speed-balancer"
 author = "Lightningbulb"
 url = "https://github.com/Lightningbulb2/FAF-sim-speed-balancer"
-uid = "SimSpeedBalancerV20"
+uid = "sim-speed-balancer-v21"
 
 exclusive = false
 enabled = true
 ui_only = false
 conflicts = {}
 after = {}
-before = { "SimSpeedBalancerUIV20" }
+before = { "sim-speed-balancer-ui-v21", "CHEESEBERRY-a1e2-c4t4-scfa-ssbmod-v0200" }
 icon = "/mods/FAF-sim-speed-balancer/speed_balancer.png"
 
 --[[
@@ -68,5 +68,16 @@ V20:
 
 Fix logging toggle and modded client reporting in chat
 
+V21:
+
+Fix: Load BEFORE Supreme Scoreboard so it can run in Co-op before Supreme Scoreboard breaks the UI and prevents it from loading
+
+Fix: Only run hide/show on the mod toggle button if it exists (prevents unecessary log errors)
+
+Fix: UID capitalization causing mod deselect every game launch
+
+Change: move version reporting to a UI element instead of going through chat
+
+Add: ReUI support for moving the panel around
 
 ]]

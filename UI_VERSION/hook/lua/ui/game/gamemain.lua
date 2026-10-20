@@ -4,7 +4,7 @@ function CreateUI(isReplay)
     _G.SimSpeedBalancerPath = "/mods/FAF-sim-speed-balancer/UI_VERSION"
 	import(SimSpeedBalancerPath .. '/modules/global-invoke.lua')
 
-    local simModUID = 'SimSpeedBalancerV20'
+    local simModUID = 'sim-speed-balancer-v21'
     local simModActive = false
 
     for _, mod in _G.__active_mods do

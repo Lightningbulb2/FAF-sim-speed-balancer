@@ -43,7 +43,7 @@ end
 
 --#region Constants
 
-local modVersion = 20
+local modVersion = 21
 
 local OPTIONS = SessionGetScenarioInfo().Options
 
@@ -58,7 +58,7 @@ local TARGET_TICKRATE = tonumber(OPTIONS.SSB_TargetTickrate) or 1
 
 local TOGGLE_PLAYER = tonumber(OPTIONS.SSB_TogglePlayer) or 1
 
-local LOGGING_ENABLED = tonumber(OPTIONS.SSB_Logging) or 0
+local LOGGING_ENABLED = false
 
 
 local armies = GetArmiesTable().armiesTable
@@ -342,7 +342,7 @@ function OnBeat()
 
 		--#endregion
 
-		if LOGGING_ENABLED == 1 then
+		if LOGGING_ENABLED then
 			--LOG2(string.format("Current Divergence %015.12f | Divergence Change %+016.12f | Game Tick %015.12f | Real Time %015.12f | Sim Time %015.12f | Was Paused %d", currentDivergence, divergenceDelta, currentGameTick, currentRealTime, currentSimTime, wasPaused and 1 or 0))
 
 			LOG2(string.format("%d | %06d | %010.3f | %010.3f | %015.12f | %+016.12f",modEnabled and 1 or 0, currentGameTick, currentRealTime, currentSimTime, currentDivergence, divergenceDelta))
@@ -586,6 +586,34 @@ function CreateReadoutsDisplay(parent)
     Tooltip.AddCheckboxTooltip(controls.SSBcollapseArrow,  {
     	text = "Collapse/Expand"})
 
+	
+	controls.SSBLogButton = Bitmap(controls.SSBbg)
+	LayoutHelpers.SetDimensions(controls.SSBLogButton, 13, 13)
+	controls.SSBLogButton:SetSolidColor('9D151715')
+	controls.SSBLogButton.label = UIUtil.CreateText(controls.SSBLogButton, "L", 10, UIUtil.bodyFont, true)
+	controls.SSBLogButton.label:SetColor('8DFFFFFF')
+	controls.SSBLogButton:EnableHitTest()
+	controls.SSBLogButton.label:DisableHitTest(true)
+
+    controls.SSBLogButton.HandleEvent = function(self, event)
+		if event.Type == 'ButtonPress' and event.Modifiers.Left then
+			if not LOGGING_ENABLED then
+				LOG2("Mod Enabled | Game Tick | Real Time | Sim Time | Current Divergence | Divergence Change")
+				LOGGING_ENABLED = true
+				controls.SSBLogButton.label:SetColor('FF000000')
+				controls.SSBLogButton:SetSolidColor('FF17CCEC')
+			else
+				LOGGING_ENABLED = false
+				controls.SSBLogButton.label:SetColor('8DFFFFFF')
+				controls.SSBLogButton:SetSolidColor('9D151715')
+			end
+		end
+	end
+
+	Tooltip.AddCheckboxTooltip(controls.SSBLogButton,  {
+    text = "Toggle Performance Logging"})
+
+
 	controls.tickRateReadout = UIUtil.CreateText(controls.SSBbg.main, "TPS:", 12, UIUtil.bodyFont, true)
 	controls.tickRateReadout:SetColor('ff00C4E2')
 	controls.tickRateReadout:EnableHitTest(true)
@@ -659,6 +687,9 @@ function CreateReadoutsDisplay(parent)
 
 	LayoutHelpers.AtLeftTopIn(controls.SSBcollapseArrow, controls.SSBbg, 0, -15)
 
+	LayoutHelpers.AtLeftTopIn(controls.SSBLogButton, controls.SSBbg, -13, -10)
+	LayoutHelpers.AtLeftTopIn(controls.SSBLogButton.label, controls.SSBLogButton, 3, 0)
+
 	LayoutHelpers.AtLeftTopIn(controls.SimSpeedBalancerInfo, controls.SSBbg.main, 30, -10)
 
 	controls.SSBstatus = UIUtil.CreateText(controls.SSBbg.main, "", 12, UIUtil.bodyFont, true)
@@ -695,11 +726,6 @@ function CreateReadoutsDisplay(parent)
 							})
 		SessionSendChatMessage(validClients, { Identifier = 'SimSpeedBalancer', version = modVersion })
                 end
-
-
-	if LOGGING_ENABLED == 1 then
-		LOG2("Mod Enabled | Game Tick | Real Time | Sim Time | Current Divergence | Divergence Change")
-	end
 end
 
 function GetTotalSlowdown()
@@ -726,7 +752,10 @@ function ToggleReadouts(checked)
             controls.SSBbg.main:Show()
 			controls.SSBbgTop:Show()
 			controls.SSBbgBottom:Show()
-			controls.SSBbutton:Show()
+			controls.SSBLogButton:Show()
+			if controls.SSBbutton then
+				controls.SSBbutton:Show()
+			end
             local sound = Sound({Cue = "UI_Score_Window_Open", Bank = "Interface",})
             PlaySound(sound)
 
@@ -736,7 +765,10 @@ function ToggleReadouts(checked)
 			controls.SSBbg.main:Hide()
 			controls.SSBbgTop:Hide()
 			controls.SSBbgBottom:Hide()
-			controls.SSBbutton:Hide()
+			controls.SSBLogButton:Hide()
+			if controls.SSBbutton then
+				controls.SSBbutton:Hide()
+			end
 
         end
 
