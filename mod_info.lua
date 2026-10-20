@@ -78,6 +78,10 @@ Fix: UID capitalization causing mod deselect every game launch
 
 Change: move version reporting to a UI element instead of going through chat
 
-Add: ReUI support for moving the panel around
+Add: ReUI support for moving the panel around (drag its tab along the left, right or top edge while its ReUI options window is open; "Reset position" puts it back)
+
+Add: ReUI options to hide the logging button and to start with the panel folded
+
+Add: hover the "Sim Speed Balancer" title to see every player's version (orange when someone differs)
 
 ]]
